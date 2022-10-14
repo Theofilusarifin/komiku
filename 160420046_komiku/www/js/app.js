@@ -174,22 +174,18 @@ var app = new Framework7({
 						const res = JSON.parse(data);
 
 						if (res.result == "success") {
-							$$("#popular-comic").html("");
+							// $$("#popular-comic").html("");
 							res.comics.forEach(comic => {
 								var comic_name = comic.name;
-								if (comic.name.length > 23) {
-									comic_name = comic.name.slice(0, 23) + "...";
+								if (comic.name.length > 20) {
+									comic_name = comic.name.slice(0, 20) + "...";
 								}
 								$$("#popular-comic").append(`
 									<div class="swiper-slide">
-										<a href="/comic/${comic.id}"
-											<div class="row no-gap">
-												<div class="col-100" style="height: 140px; padding: 0; margin: 0">
-													<img src="${comic.url_poster}" style="border-radius: 8px" class="comic-poster" alt="" />
-												</div>
-												<div class="col-100 display-flex align-items-flex-start" style="height: 50px; margin-top: 5px; padding: 0">
-													<p class="montserrat-bold" style="margin: 0; padding: 0; font-size: 13px; color: #161d31">${comic_name}</p>
-												</div>
+										<a href="/comic/${comic.id}">
+											<div class="card card-index row" style="padding:0px; margin:0px;">
+												<img src="${comic.url_poster}" style="border-radius: 8px" class="col-100 comic-poster" alt="" />
+												<p class="col-100 montserrat-bold margin-top-half" style="color: #161d31;">${comic_name}</p>
 											</div>
 										</a>
 									</div>
@@ -310,19 +306,23 @@ var app = new Framework7({
 				else if (page.name == "detailcomic") {
 					const comicId = page.router.currentRoute.params.id;
 
-					app.request.post(root + "detailcomic.php", { 
-						comicId: comicId
-					}, data => {
-						const res = JSON.parse(data);
+					app.request.post(
+						root + "detailcomic.php",
+						{
+							comicId: comicId,
+						},
+						data => {
+							const res = JSON.parse(data);
 
-						if (res.result == "success") {
-							// res.comics.forEach(comic => {
-							// 	displayComic(comic);
-							// });
-						} else {
-							app.dialog.alert(res.message);
+							if (res.result == "success") {
+								// res.comics.forEach(comic => {
+								// 	displayComic(comic);
+								// });
+							} else {
+								app.dialog.alert(res.message);
+							}
 						}
-					});
+					);
 				}
 			});
 		},
@@ -341,22 +341,22 @@ const displayComic = comic => {
 	var diffMins = Math.abs(Math.round((((latest_update - today) % 86400000) % 3600000) / 60000));
 
 	$$("#comic-container").append(`
-									<div class="col-50 margin-vertical">
+									<div class="col-50 margin-bottom">
 										<a href="/comic/${comic.id}">
 											<div class="row no-gap">
-												<div class="col-100" style="height: 213px; padding: 0; margin: 0">
+												<div class="col-100">
 													<img src="${comic.url_poster}" style="border-radius: 8px" class="comic-poster-big" alt="" />
 												</div>
-												<div class="col-100 display-flex align-items-flex-start margin-top-half" style="height: 50px">
-													<p class="montserrat-bold" style="margin: 0; padding: 0; font-size: 14px; color: #161d31">${comic.name}</p>
+												<div class="col-100 display-flex align-items-flex-start margin-top-half" style="min-height: 50px;">
+													<p class="montserrat-bold" style="margin: 0; color: #161d31">${comic.name}</p>
 												</div>
 											</div>
 											<div class="row display-flex justify-content-space-between enter">
 												<div class="col-50">
-													<button class="button button-small button-round button-fill montserrat-medium" style="font-size: 9px; padding: 10px; width: max-content">Chapter ${comic.comic_chapter}</button>
+													<button class="button button-small button-round button-fill montserrat-medium" style="font-size: 9px; width: max-content">Chapter ${comic.comic_chapter}</button>
 												</div>
 												<div class="col-50">
-													<p class="montserrat-medium" style="font-size:9px; color: #161d31">${diffMins} Minutes Ago</p>
+													<p class="montserrat-medium" style="font-size: 9px; color: #161d31">${diffMins} Minutes Ago</p>
 												</div>
 											</div>
 										</a>

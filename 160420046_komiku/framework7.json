@@ -1,0 +1,32 @@
+{
+  "cwd": "D:\\College\\Semester 5\\HMP (D)\\TS\\UTS\\160420046_komiku",
+  "type": [
+    "cordova"
+  ],
+  "name": "komiku",
+  "framework": "core",
+  "template": "blank",
+  "bundler": false,
+  "cssPreProcessor": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false
+  },
+  "customBuild": false,
+  "pkg": "io.framework7.myapp",
+  "cordova": {
+    "folder": "cordova",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "plugins": [
+      "cordova-plugin-statusbar",
+      "cordova-plugin-keyboard",
+      "cordova-plugin-splashscreen"
+    ]
+  }
+}

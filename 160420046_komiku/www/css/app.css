@@ -1,0 +1,36 @@
+/* iOS Cordova Tweak */
+.device-cordova.device-ios {
+	height: 100vh;
+}
+
+/* Your app custom styles here */
+@font-face {
+	font-family: montserrat-bold;
+	src: url("../fonts/Montserrat-Bold.ttf");
+}
+
+@font-face {
+	font-family: montserrat-medium;
+	src: url("../fonts/Montserrat-Medium.ttf");
+}
+
+@font-face {
+	font-family: montserrat-regular;
+	src: url("../fonts/Montserrat-Regular.ttf");
+}
+
+.montserrat-bold {
+	font-family: montserrat-bold;
+}
+.montserrat-medium {
+	font-family: montserrat-medium;
+}
+.montserrat-regular {
+	font-family: montserrat-regular;
+}
+
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: white !important;
+	opacity: 0.5;
+}

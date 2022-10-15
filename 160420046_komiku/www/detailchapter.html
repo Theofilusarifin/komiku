@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: content:" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
+
+		<meta name="theme-color" content="#fff" />
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<title>komiku</title>
+
+		<link rel="stylesheet" href="framework7/framework7-bundle.min.css" />
+		<link rel="stylesheet" href="css/icons.css" />
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+	<body>
+		<div id="app">
+			<!-- Your main view, should have "view-main" class -->
+			<div class="view view-main view-init safe-areas">
+				<div class="page" data-name="detailchapter">
+					<!-- Top Navbar -->
+					<div class="navbar navbar-large" style="background-color: #161d31">
+						<div class="navbar-bg" style="background-color: #161d31"></div>
+						<div class="navbar-inner sliding" style="background-color: #161d31">
+							<div class="right">
+								<a class="link panel-open" data-panel=".panel-left">
+									<i class="f7-icons">menu</i>
+								</a>
+							</div>
+							<div class="title row">
+								<div class="col-100 display-flex justify-content-center">
+									<a href="/">
+										<img src="assets/logo/text_logo.png" style="max-height: 20px; width: auto" alt="" />
+									</a>
+								</div>
+							</div>
+							<div class="title-large montserrat-bold">
+								<div class="row">
+									<div class="title-large-text col-100" style="color: #7367f0">Komiku</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Scrollable page content-->
+					<div class="page-content">
+						<div class="block" style="margin-top: 0px">
+							<div class="row margin-vertical" id="comic-title">
+								<h2 class="montserrat-medium col-100">Seoul Station Druid - Chapter 1</h2>
+							</div>
+							<div class="row margin-bottom">
+								<div class="col-100">
+									<div class="card padding-half" style="background: rgba(115, 103, 240, 0.1); color: #161d31; margin:0; text-align: justify; text-justify:inter-word;">
+                                        <em>Use the left (←) or right (→) arrows to switch chapters</em>
+                                    </div>
+								</div>
+							</div>
+							<div class="row no-gap" style="margin: 20px 0px;">
+								<div class="col-50 display-flex justify-content-flex-start">
+                                    <a href="/" class="tab-link">
+                                        <button class="col button button-fill padding margin-right-half">
+                                            <i class="f7-icons" style="font-size: 16px">house_fill</i>
+                                        </button>
+                                    </a>
+                                    <a href="/search" class="tab-link">
+                                        <button class="col button button-fill padding">
+                                            <i class="f7-icons" style="font-size: 16px">info_circle_fill</i>
+                                        </button>
+                                    </a>
+                                </div>
+								<div class="col-50 display-flex justify-content-flex-end">
+                                    <a href="/search" class="tab-link">
+                                        <button class="col button button-fill padding-vertical margin-right-half">
+                                            <i class="f7-icons" style="font-size: 16px">arrowtriangle_left_fill</i>
+                                        </button>
+                                    </a>
+									<a href="/search" class="tab-link">
+										<button class="col button button-fill padding-vertical">
+											<i class="f7-icons" style="font-size: 16px">arrowtriangle_right_fill</i>
+										</button>
+									</a>
+								</div>
+							</div>
+                            <div style="height: 50px; width: auto;"></div>
+							<div class="card" style="margin: 0;">
+								<img src="https://ttl.bakul.buzz/data/88075678/28/e1a40db666957d1046b39a69ae8addbe/gpZmEcq1lnNNqaCPPQkqUhb3mPQBarfFymXV5wV5.jpg" style="width: 100%; height: auto" alt="" />
+								<img src="https://ttl.bakul.buzz/data/88075678/28/e1a40db666957d1046b39a69ae8addbe/gpZmEcq1lnNNqaCPPQkqUhb3mPQBarfFymXV5wV5.jpg" style="width: 100%; height: auto" alt="" />
+								<img src="https://ttl.bakul.buzz/data/88075678/28/e1a40db666957d1046b39a69ae8addbe/gpZmEcq1lnNNqaCPPQkqUhb3mPQBarfFymXV5wV5.jpg" style="width: 100%; height: auto" alt="" />
+								<img src="https://ttl.bakul.buzz/data/88075678/28/e1a40db666957d1046b39a69ae8addbe/gpZmEcq1lnNNqaCPPQkqUhb3mPQBarfFymXV5wV5.jpg" style="width: 100%; height: auto" alt="" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Panel Left -->
+		<div class="panel panel-left" style="background-color: #161d31">
+			<div class="list simple-list">
+				<!-- Close Icon -->
+				<div class="panel-close display-flex justify-content-center">
+					<i class="f7-icons panel-close" style="color: #7367f0; height: 50px">xmark</i>
+				</div>
+
+				<!-- Add auth here -->
+				<div id="auth-container" style="margin: 0; padding: 0"></div>
+
+				<!-- List Menu -->
+				<div class="list-group" id="panel_menu"></div>
+			</div>
+		</div>
+
+		<!-- CORDOVA_PLACEHOLDER_DONT_REMOVE -->
+		<!-- Framework7 library -->
+		<script src="framework7/framework7-bundle.min.js"></script>
+		<!-- Cordova APIs -->
+		<script src="js/cordova-app.js"></script>
+		<!-- App routes -->
+		<script src="js/routes.js"></script>
+		<!-- App store -->
+		<script src="js/store.js"></script>
+		<!-- App scripts -->
+		<script src="js/app.js"></script>
+	</body>
+</html>

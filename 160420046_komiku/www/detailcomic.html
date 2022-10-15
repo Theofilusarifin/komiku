@@ -31,7 +31,9 @@
 							</div>
 							<div class="title row">
 								<div class="col-100 display-flex justify-content-center">
-									<img src="assets/logo/text_logo.png" style="max-height: 20px; width: auto" alt="" />
+									<a href="/">
+										<img src="assets/logo/text_logo.png" style="max-height: 20px; width: auto" alt="" />
+									</a>
 								</div>
 							</div>
 							<div class="title-large montserrat-bold">
@@ -163,7 +165,9 @@
 											</tr>
 											<tr>
 												<td>
-													<h4 style="margin: 0" class="montserrat-regular">Chapter 1</h4>
+													<a href="/comic/1/chapter/1">
+														<h4 style="margin: 0" class="montserrat-regular">Chapter 1</h4>
+													</a>
 												</td>
 												<td>
 													<p style="margin: 0; font-size: 10px" class="montserrat-regular">87 Views</p>
@@ -197,7 +201,7 @@
 										</table>
 									</div>
 									<!-- Add Comment Section -->
-									<div class="row margin-top">
+									<div class="row margin-vertical">
 										<h3 class="montserrat-medium" style="margin-bottom: 0px">Comments</h3>
 
 										<div class="col-100 margin-vertical">
@@ -206,12 +210,12 @@
 											</div>
 										</div>
 										<div class="col-100 display-flex justify-content-flex-end">
-											<button class="col button button-fill padding" style="width: max-content">Comment</button>
+											<button class="col button button-fill padding montserrat-regular" style="width: max-content">Comment</button>
 										</div>
 									</div>
 									<!-- User Comments -->
-									<div class="row margin-top">
-										<div class="col-100 margin-vertical">
+									<div class="row">
+										<div class="col-100 margin-top">
 											<div class="row no-gap">
 												<div class="col-15 display-flex justify-content-center align-items-flex-start">
 													<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 40px; width: auto" alt="" />
@@ -229,25 +233,143 @@
 															</p>
 															<div class="row">
 																<div class="col-100 display-flex justify-content-flex-end">
-																	<button class="button col" style="width: max-content">Reply</button>
+																	<button class="button montserrat-medium" style="width: max-content">Reply</button>
 																</div>
-																<div class="row">
-																	<div class="col-100 margin-vertical-half">
-																		<div class="text-editor text-editor-init text-editor-resizable" style="margin: 0;" data-mode="keyboard-toolbar" data-placeholder="Enter reply here...">
-																			<div class="text-editor-content" contenteditable></div>
-																		</div>
+															</div>
+															<div class="row">
+																<div class="col-100 margin-vertical">
+																	<div
+																		class="text-editor text-editor-init text-editor-resizable"
+																		style="margin: 0"
+																		data-placeholder="Leave a Reply here..."
+																		data-mode="keyboard-toolbar"
+																		style="--f7-text-editor-height: 150px"
+																	>
+																		<div class="text-editor-content" contenteditable></div>
 																	</div>
-																	<div class="col-100 display-flex justify-content-flex-end margin-top-half">
-																		<button class="button button-small button-fill" style="width: max-content">Comment</button>
+																</div>
+																<div class="col-100 display-flex justify-content-flex-end margin-top-half">
+																	<button class="button button-small button-fill montserrat-regular" style="width: max-content">Comment</button>
+																</div>
+															</div>
+															<div style="margin-top: 30px">
+																<hr style="height: 1px; background-color: rgba(22, 29, 49, 0.3); border: none" />
+															</div>
+															<!-- Users Reply -->
+															<div class="row no-gap">
+																<div class="col-15 display-flex justify-content-flex-start margin-top">
+																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
+																</div>
+																<div class="col-85">
+																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
+																		<div class="card-content card-content-padding" style="padding-bottom: 0">
+																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
+																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
+																			<p class="montserrat-regular">Sure!</p>
+																		</div>
 																	</div>
 																</div>
 															</div>
+
+															<div class="row no-gap">
+																<div class="col-15 display-flex justify-content-flex-start margin-top">
+																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
+																</div>
+																<div class="col-85">
+																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
+																		<div class="card-content card-content-padding" style="padding-bottom: 0">
+																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
+																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
+																			<p class="montserrat-regular">Sure!</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- End OF Users Reply -->
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<hr />
+									</div>
+
+									<div class="row">
+										<div class="col-100 margin-top">
+											<div class="row no-gap">
+												<div class="col-15 display-flex justify-content-center align-items-flex-start">
+													<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 40px; width: auto" alt="" />
+												</div>
+												<div class="col-85">
+													<div class="card" style="margin-top: 0; background: #efeff4; box-shadow: none">
+														<div class="card-content card-content-padding">
+															<p class="montserrat-bold">
+																Name Here &nbsp;
+																<span class="montserrat-regular" style="font-size: 10px; font-weight: 100">2 Weeks Ago</span>
+															</p>
+															<p class="montserrat-regular">
+																Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium deserunt itaque optio nemo saepe, suscipit, rerum provident veniam pariatur consectetur facere obcaecati
+																enim ut tempore. Quos itaque deserunt nobis perspiciatis.
+															</p>
+															<div class="row">
+																<div class="col-100 display-flex justify-content-flex-end">
+																	<button class="button montserrat-medium" style="width: max-content">Reply</button>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-100 margin-vertical">
+																	<div
+																		class="text-editor text-editor-init text-editor-resizable"
+																		style="margin: 0"
+																		data-placeholder="Leave a Reply here..."
+																		data-mode="keyboard-toolbar"
+																		style="--f7-text-editor-height: 150px"
+																	>
+																		<div class="text-editor-content" contenteditable></div>
+																	</div>
+																</div>
+																<div class="col-100 display-flex justify-content-flex-end margin-top-half">
+																	<button class="button button-small button-fill montserrat-regular" style="width: max-content">Comment</button>
+																</div>
+															</div>
+															<div style="margin-top: 30px">
+																<hr style="height: 1px; background-color: rgba(22, 29, 49, 0.3); border: none" />
+															</div>
+															<!-- Users Reply -->
+															<div class="row no-gap">
+																<div class="col-15 display-flex justify-content-flex-start margin-top">
+																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
+																</div>
+																<div class="col-85">
+																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
+																		<div class="card-content card-content-padding" style="padding-bottom: 0">
+																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
+																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
+																			<p class="montserrat-regular">Sure!</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+															<div class="row no-gap">
+																<div class="col-15 display-flex justify-content-flex-start margin-top">
+																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
+																</div>
+																<div class="col-85">
+																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
+																		<div class="card-content card-content-padding" style="padding-bottom: 0">
+																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
+																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
+																			<p class="montserrat-regular">Sure!</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!-- End OF Users Reply -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>

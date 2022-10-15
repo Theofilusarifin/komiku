@@ -50,4 +50,8 @@ var routes = [
 		path: "/comic/:id",
 		url: "./detailcomic.html",
 	},
+	{
+		path: "/comic/:id/chapter/:chapter",
+		url: "./detailchapter.html",
+	},
 ];

@@ -47,12 +47,12 @@
 					<div class="page-content">
 						<div class="block" style="margin-top: 0px">
 							<div class="row margin-vertical" id="comic-title">
-								<h2 class="montserrat-medium col-100">Seoul Station Druid</h2>
+								<!-- Get data from API -->
 							</div>
 
-							<div class="row" id="comic-title">
-								<div class="col-100 display-flex justify-content-center">
-									<img src="assets/data/Swormasters Youngest Son/poster.jpg" style="height: 100%; width: auto" alt="" />
+							<div class="row">
+								<div class="col-100 display-flex justify-content-center" id="comic-poster">
+									<!-- Get data from API -->
 								</div>
 							</div>
 
@@ -61,41 +61,30 @@
 									<div class="row display-flex align-items-center">
 										<div class="col-60">
 											<div class="rate">
-												<input type="radio" id="star5" name="rate" value="5" />
+												<input type="radio" id="star5" name="rate" value="5" disabled />
 												<label for="star5" title="text">5 stars</label>
-												<input type="radio" id="star4" name="rate" value="4" />
+												<input type="radio" id="star4" name="rate" value="4" disabled />
 												<label for="star4" title="text">4 stars</label>
-												<input type="radio" id="star3" name="rate" value="3" />
+												<input type="radio" id="star3" name="rate" value="3" disabled />
 												<label for="star3" title="text">3 stars</label>
-												<input type="radio" id="star2" name="rate" value="2" />
+												<input type="radio" id="star2" name="rate" value="2" disabled />
 												<label for="star2" title="text">2 stars</label>
-												<input type="radio" id="star1" name="rate" value="1" />
+												<input type="radio" id="star1" name="rate" value="1" disabled />
 												<label for="star1" title="text">1 star</label>
 											</div>
 										</div>
-										<div class="col-40">
-											<h3 class="montserrat-medium" style="color: #161d31">2.7 / 5 <br />of 100 Vote</h3>
+										<div class="col-40 display-flex align-items-flex-end">
+											<h3 class="montserrat-medium" style="color: #161d31" id="total_rating">
+												<!-- Get Data From API -->
+											</h3>
 										</div>
 									</div>
 
 									<hr style="height: 1px; background-color: rgba(22, 29, 49, 0.3); border: none" />
 
 									<div class="row">
-										<div class="col-100">
-											<h4 class="montserrat-medium" style="color: #161d31; margin-bottom: 5px">Rating</h4>
-											<p style="margin-top: 0px; font-size: 12px" class="montserrat-regular">Average 2.7 / 5 out of 103</p>
-
-											<h4 class="montserrat-medium" style="color: #161d31; margin-bottom: 5px">Author</h4>
-											<p style="margin-top: 0px; font-size: 12px" class="montserrat-regular">Average 2.7 / 5 out of 103</p>
-
-											<h4 class="montserrat-medium" style="color: #161d31; margin-bottom: 5px">View</h4>
-											<p style="margin-top: 0px; font-size: 12px" class="montserrat-regular">Average 2.7 / 5 out of 103</p>
-
-											<h4 class="montserrat-medium" style="color: #161d31; margin-bottom: 5px">Status</h4>
-											<p style="margin-top: 0px; font-size: 12px" class="montserrat-regular">Average 2.7 / 5 out of 103</p>
-
-											<h4 class="montserrat-medium" style="color: #161d31; margin-bottom: 5px">Genre</h4>
-											<p style="margin-top: 0px; font-size: 12px" class="montserrat-regular">Average 2.7 / 5 out of 103</p>
+										<div class="col-100" id="comic_detail">
+											<!-- Get Data From API -->
 										</div>
 									</div>
 
@@ -107,8 +96,8 @@
 												</div>
 											</div>
 											<div class="row">
-												<div class="col display-flex justify-content-center">
-													<p>28 Comments</p>
+												<div class="col display-flex justify-content-center" id="user_comment">
+													<!-- Get data From API -->
 												</div>
 											</div>
 										</div>
@@ -119,27 +108,15 @@
 												</div>
 											</div>
 											<div class="row">
-												<div class="col display-flex justify-content-center">
-													<p style="text-align: center">
-														28 Users <br />
-														Favorited this
-													</p>
+												<div class="col display-flex justify-content-center" id="user_favorite">
+													<!-- Get data From API -->
 												</div>
 											</div>
 										</div>
 									</div>
 
-									<div class="row">
-										<div class="col-50 display-flex justify-content-flex-end">
-											<button class="col button button-fill montserrat-bold" style="padding-top: 20px; padding-bottom: 20px; background: #7367f0; color: white; max-width: max-content; font-size: 12px">
-												Read First
-											</button>
-										</div>
-										<div class="col-50 display-flex justify-content-flex-start">
-											<button class="col button button-fill montserrat-bold" style="padding-top: 20px; padding-bottom: 20px; background: #7367f0; color: white; max-width: max-content; font-size: 12px">
-												Read Last
-											</button>
-										</div>
+									<div class="row margin-bottom-half" id="button_read">
+										<!-- Get data From API -->
 									</div>
 								</div>
 							</div>
@@ -149,55 +126,17 @@
 									<!-- Summary -->
 									<div class="row">
 										<h3 class="montserrat-medium">Summary</h3>
-										<p class="montserrat-regular" style="margin: 0px; text-align: justify; text-justify: inter-word">
-											Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, in officia praesentium tempore omnis minima quasi nam quia! Aperiam consequatur odio suscipit quia praesentium velit voluptatem illo
-											provident accusantium corporis sit dolorem sed, non sapiente nam minima numquam iure eligendi molestias, nemo deleniti! Officiis magni consectetur molestiae, omnis hic asperiores.
+										<p id="comic_summary" class="montserrat-regular" style="margin: 0px; text-align: justify; text-justify: inter-word">
+											<!-- Get data From API -->
 										</p>
 									</div>
 									<!-- Latest Release -->
 									<div class="row margin-top">
 										<h3 class="montserrat-medium" style="margin-bottom: 0px">Latest Comic Release</h3>
 										<table style="width: 100%; border-spacing: 0 1em">
-											<tr style="height: 0px">
-												<th style="width: 40%"></th>
-												<th style="width: 30%"></th>
-												<th style="width: 30%"></th>
-											</tr>
-											<tr>
-												<td>
-													<a href="/comic/1/chapter/1">
-														<h4 style="margin: 0" class="montserrat-regular">Chapter 1</h4>
-													</a>
-												</td>
-												<td>
-													<p style="margin: 0; font-size: 10px" class="montserrat-regular">87 Views</p>
-												</td>
-												<td>
-													<p style="margin: 0; font-size: 10px" class="montserrat-regular">7 Days Ago</p>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<h4 style="margin: 0" class="montserrat-regular">Chapter 1</h4>
-												</td>
-												<td>
-													<p style="margin: 0; font-size: 10px" class="montserrat-regular">87 Views</p>
-												</td>
-												<td>
-													<p style="margin: 0; font-size: 10px" class="montserrat-regular">7 Days Ago</p>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<h4 style="margin: 0" class="montserrat-regular">Chapter 1</h4>
-												</td>
-												<td>
-													<p style="margin: 0; font-size: 10px" class="montserrat-regular">87 Views</p>
-												</td>
-												<td>
-													<p style="margin: 0; font-size: 10px" class="montserrat-regular">7 Days Ago</p>
-												</td>
-											</tr>
+											<tbody id="chapter_list">
+												<!-- Get data From API -->
+											</tbody>
 										</table>
 									</div>
 									<!-- Add Comment Section -->
@@ -206,170 +145,17 @@
 
 										<div class="col-100 margin-vertical">
 											<div class="text-editor text-editor-init text-editor-resizable" style="margin: 0" data-placeholder="Leave a comment here..." data-mode="keyboard-toolbar" style="--f7-text-editor-height: 150px">
-												<div class="text-editor-content" contenteditable></div>
+												<div class="text-editor-content" contenteditable id="comment_area"></div>
 											</div>
 										</div>
 										<div class="col-100 display-flex justify-content-flex-end">
-											<button class="col button button-fill padding montserrat-regular" style="width: max-content">Comment</button>
+											<button id="comment_button" class="button button-fill padding montserrat-regular" style="width: max-content">Comment</button>
 										</div>
 									</div>
+
 									<!-- User Comments -->
-									<div class="row">
-										<div class="col-100 margin-top">
-											<div class="row no-gap">
-												<div class="col-15 display-flex justify-content-center align-items-flex-start">
-													<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 40px; width: auto" alt="" />
-												</div>
-												<div class="col-85">
-													<div class="card" style="margin-top: 0; background: #efeff4; box-shadow: none">
-														<div class="card-content card-content-padding">
-															<p class="montserrat-bold">
-																Name Here &nbsp;
-																<span class="montserrat-regular" style="font-size: 10px; font-weight: 100">2 Weeks Ago</span>
-															</p>
-															<p class="montserrat-regular">
-																Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium deserunt itaque optio nemo saepe, suscipit, rerum provident veniam pariatur consectetur facere obcaecati
-																enim ut tempore. Quos itaque deserunt nobis perspiciatis.
-															</p>
-															<div class="row">
-																<div class="col-100 display-flex justify-content-flex-end">
-																	<button class="button montserrat-medium" style="width: max-content">Reply</button>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col-100 margin-vertical">
-																	<div
-																		class="text-editor text-editor-init text-editor-resizable"
-																		style="margin: 0"
-																		data-placeholder="Leave a Reply here..."
-																		data-mode="keyboard-toolbar"
-																		style="--f7-text-editor-height: 150px"
-																	>
-																		<div class="text-editor-content" contenteditable></div>
-																	</div>
-																</div>
-																<div class="col-100 display-flex justify-content-flex-end margin-top-half">
-																	<button class="button button-small button-fill montserrat-regular" style="width: max-content">Comment</button>
-																</div>
-															</div>
-															<div style="margin-top: 30px">
-																<hr style="height: 1px; background-color: rgba(22, 29, 49, 0.3); border: none" />
-															</div>
-															<!-- Users Reply -->
-															<div class="row no-gap">
-																<div class="col-15 display-flex justify-content-flex-start margin-top">
-																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
-																</div>
-																<div class="col-85">
-																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
-																		<div class="card-content card-content-padding" style="padding-bottom: 0">
-																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
-																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
-																			<p class="montserrat-regular">Sure!</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-
-															<div class="row no-gap">
-																<div class="col-15 display-flex justify-content-flex-start margin-top">
-																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
-																</div>
-																<div class="col-85">
-																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
-																		<div class="card-content card-content-padding" style="padding-bottom: 0">
-																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
-																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
-																			<p class="montserrat-regular">Sure!</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<!-- End OF Users Reply -->
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-100 margin-top">
-											<div class="row no-gap">
-												<div class="col-15 display-flex justify-content-center align-items-flex-start">
-													<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 40px; width: auto" alt="" />
-												</div>
-												<div class="col-85">
-													<div class="card" style="margin-top: 0; background: #efeff4; box-shadow: none">
-														<div class="card-content card-content-padding">
-															<p class="montserrat-bold">
-																Name Here &nbsp;
-																<span class="montserrat-regular" style="font-size: 10px; font-weight: 100">2 Weeks Ago</span>
-															</p>
-															<p class="montserrat-regular">
-																Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium deserunt itaque optio nemo saepe, suscipit, rerum provident veniam pariatur consectetur facere obcaecati
-																enim ut tempore. Quos itaque deserunt nobis perspiciatis.
-															</p>
-															<div class="row">
-																<div class="col-100 display-flex justify-content-flex-end">
-																	<button class="button montserrat-medium" style="width: max-content">Reply</button>
-																</div>
-															</div>
-															<div class="row">
-																<div class="col-100 margin-vertical">
-																	<div
-																		class="text-editor text-editor-init text-editor-resizable"
-																		style="margin: 0"
-																		data-placeholder="Leave a Reply here..."
-																		data-mode="keyboard-toolbar"
-																		style="--f7-text-editor-height: 150px"
-																	>
-																		<div class="text-editor-content" contenteditable></div>
-																	</div>
-																</div>
-																<div class="col-100 display-flex justify-content-flex-end margin-top-half">
-																	<button class="button button-small button-fill montserrat-regular" style="width: max-content">Comment</button>
-																</div>
-															</div>
-															<div style="margin-top: 30px">
-																<hr style="height: 1px; background-color: rgba(22, 29, 49, 0.3); border: none" />
-															</div>
-															<!-- Users Reply -->
-															<div class="row no-gap">
-																<div class="col-15 display-flex justify-content-flex-start margin-top">
-																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
-																</div>
-																<div class="col-85">
-																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
-																		<div class="card-content card-content-padding" style="padding-bottom: 0">
-																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
-																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
-																			<p class="montserrat-regular">Sure!</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-
-															<div class="row no-gap">
-																<div class="col-15 display-flex justify-content-flex-start margin-top">
-																	<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
-																</div>
-																<div class="col-85">
-																	<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
-																		<div class="card-content card-content-padding" style="padding-bottom: 0">
-																			<p class="montserrat-bold" style="margin: 0">Name Here</p>
-																			<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">2 Weeks Ago</p>
-																			<p class="montserrat-regular">Sure!</p>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<!-- End OF Users Reply -->
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
+									<div id="comment_detail">
+										<!-- Get data From API -->
 									</div>
 								</div>
 							</div>

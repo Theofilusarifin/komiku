@@ -53,10 +53,7 @@
 	box-shadow: none;
 }
 
-/* * {
-	margin: 0;
-	padding: 0;
-} */
+
 .rate {
 	float: left;
 	height: 46px;
@@ -81,13 +78,16 @@
 	color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
+/* .rate:not(:checked) > label:hover ~ label {
 	color: #deb217;
-}
+} */
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
+.rate > input:checked ~ label:hover ~ label{
 	color: #c59b08;
 }
+
+/* .rate > label:hover ~ input:checked ~ label {
+	color: #c59b08;
+} */

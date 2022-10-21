@@ -1,5 +1,6 @@
 var $$ = Dom7;
 var root = "http://localhost/hmp/uts/";
+var star_temp = 0;
 
 var device = Framework7.getDevice();
 var app = new Framework7({
@@ -157,7 +158,7 @@ var app = new Framework7({
 				}
 				// Home page
 				else if (page.name == "home") {
-					this.request.post(root + "latestcomic.php", {}, data => {
+					f7.request.post(root + "latestcomic.php", {}, data => {
 						const res = JSON.parse(data);
 
 						if (res.result == "success") {
@@ -168,7 +169,7 @@ var app = new Framework7({
 							app.dialog.alert(res.message);
 						}
 					});
-					this.request.post(root + "popularcomic.php", {}, data => {
+					f7.request.post(root + "popularcomic.php", {}, data => {
 						const res = JSON.parse(data);
 
 						if (res.result == "success") {
@@ -299,6 +300,7 @@ var app = new Framework7({
 						}
 					);
 				}
+
 				// Detail Comic Page
 				else if (page.name == "detailcomic") {
 					const comicId = page.router.currentRoute.params.id;
@@ -313,8 +315,45 @@ var app = new Framework7({
 							if (res.result == "success") {
 								// Add Title
 								$$("#comic-title").html(`
-									<h2 class="montserrat-medium col-100">${res.comic.name}</h2>
+									<h2 class="montserrat-medium">${res.comic.name}</h2>
 								`);
+
+								// Add Favorite Icon
+								if (!localStorage.email) {
+									$$("#favorite_icon").html(`
+										<input type="checkbox" id="bookmark" class="hide" />
+										<label for="bookmark" class="btn-custom btn-bookmark">
+											<svg width="100%" height="60">
+												<use xlink:href="#icon-bookmark" />
+											</svg>
+										</label>
+									`);
+								} else {
+									app.request.post(
+										root + "/checkfavorite.php",
+										{
+											user_email: localStorage.email,
+											comic_id: comicId,
+										},
+										data => {
+											const res = JSON.parse(data);
+
+											if (res.result == "success") {
+												$$("#favorite_icon").html(`
+													<input type="checkbox" onclick="change_fav(${comicId})" id="bookmark" ${res.checked} class="hide" />
+													<label for="bookmark" class="btn-custom btn-bookmark">
+														<svg width="100%" height="60">
+															<use xlink:href="#icon-bookmark" />
+														</svg>
+													</label>
+												`);
+											} else {
+												app.dialog.alert(res.message);
+											}
+										}
+									);
+								}
+
 								// Add Poster
 								$$("#comic-poster").html(`
 									<img src="${res.comic.url_poster}" style="width: 90%; height: auto" alt="" />
@@ -377,12 +416,12 @@ var app = new Framework7({
 								// Set Button ReadFirst and ReadLast
 								$$("#button_read").html(`
 									<div class="col-50 display-flex justify-content-flex-end">
-											<a href="/comic/${res.comic.id}/chapter/1" class="button button-fill montserrat-bold" style="padding-top: 20px; padding-bottom: 20px; background: #7367f0; color: white; max-width: max-content; font-size: 12px">
+											<a href="/comic/${res.comic.id}/chapter/${res.first_chapter.id}" class="button button-fill montserrat-bold" style="padding-top: 20px; padding-bottom: 20px; background: #7367f0; color: white; max-width: max-content; font-size: 12px">
 												Read First
 											</a>
 									</div>
 									<div class="col-50 display-flex justify-content-flex-start">
-											<a href="/comic/${res.comic.id}/chapter/${res.chapters.length}" class="button button-fill montserrat-bold" style="padding-top: 20px; padding-bottom: 20px; background: #7367f0; color: white; max-width: max-content; font-size: 12px">
+											<a href="/comic/${res.comic.id}/chapter/${res.last_chapter.id}" class="button button-fill montserrat-bold" style="padding-top: 20px; padding-bottom: 20px; background: #7367f0; color: white; max-width: max-content; font-size: 12px">
 												Read Last
 											</a>
 									</div>
@@ -417,6 +456,56 @@ var app = new Framework7({
 								});
 								$$("#chapter_list").html(temp);
 
+								// Get rating form user
+								$$(".star").on("click", () => {
+									if (!localStorage.email) {
+										app.dialog.alert("Login to use this feature!");
+									} else {
+										app.request.post(
+											root + "/addrating.php",
+											{
+												user_email: localStorage.email,
+												comic_id: comicId,
+												number: star_temp,
+											},
+											data => {
+												const res = JSON.parse(data);
+
+												if (res.result == "success") {
+													app.dialog.alert("Rating Added Successfuly!");
+												} else {
+													app.dialog.alert(res.message);
+												}
+											}
+										);
+									}
+								});
+
+								// Reset rating
+								$$("#reset_rating").on("click", () => {
+									if (!localStorage.email) {
+										app.dialog.alert("Login to use this feature!");
+									} else {
+										app.request.post(
+											root + "/resetrating.php",
+											{
+												user_email: localStorage.email,
+												comic_id: comicId,
+											},
+											data => {
+												const res = JSON.parse(data);
+
+												if (res.result == "success") {
+													app.dialog.alert("Rating Reseted Successfuly!");
+													page.router.navigate(`/comic/${comicId}`);
+												} else {
+													app.dialog.alert(res.message);
+												}
+											}
+										);
+									}
+								});
+
 								// Add Comment When Button Comment Clicked
 								$$("#comment_button").on("click", () => {
 									const comment = $$("#comment_area").text();
@@ -437,12 +526,12 @@ var app = new Framework7({
 
 												if (res.result == "success") {
 													app.dialog.alert("Comment Added Successfuly!");
+													page.router.navigate(`/comic/${res.comic.id}`);
 												} else {
 													app.dialog.alert("Comment Failed!");
 												}
 											}
 										);
-										page.router.navigate(`/comic/${res.comic.id}`);
 									}
 								});
 
@@ -541,8 +630,8 @@ var app = new Framework7({
 					app.request.post(
 						root + "detailchapter.php",
 						{
-							comic_id,
-							chapter_id,
+							comic_id: comic_id,
+							chapter_id: chapter_id,
 						},
 						data => {
 							const res = JSON.parse(data);
@@ -550,10 +639,12 @@ var app = new Framework7({
 							if (res.result == "success") {
 								// Add Title
 								$$("#comic_title").html(`
-									<h2 class="montserrat-medium col-100">${res.comic.name} - Chapter ${chapter_id}</h2>
+									<h2 class="montserrat-medium col-100">${res.comic.name} - Chapter ${res.chapter.number}</h2>
 								`);
 
 								// Add Navigation Tools
+								$$("#navigation_tools").html("");
+
 								var nav_temp = ``;
 								nav_temp += `
 								<div class="col-50 display-flex justify-content-flex-start">
@@ -568,28 +659,56 @@ var app = new Framework7({
                                         </button>
                                     </a>
                                 </div>
-								<div class="col-50 display-flex justify-content-flex-end">
+								<div class="col-20 display-flex justify-content-flex-end">
+                                </div>
 								`;
+
+								$$("#navigation_tools").append(nav_temp);
+
+								// Add prev button
 								if (res.chapter.number > 1) {
-									nav_temp += `
-									<a href="/comic/${res.comic.id}/chapter/${chapter_id * 1 - 1}" class="tab-link">
-                                        <button class="col button button-fill padding-vertical margin-right-half">
-                                            <i class="f7-icons" style="font-size: 16px">arrowtriangle_left_fill</i>
-                                        </button>
-                                    </a>
-								`;
+									app.request.post(
+										root + "prevchapter.php",
+										{
+											comic_id: comic_id,
+											chapter_now: res.chapter.number,
+										},
+										data => {
+											const res2 = JSON.parse(data);
+											$$("#navigation_tools").append(`
+												<div class="col-15 display-flex justify-content-flex-end">
+													<a href="/comic/${res.comic.id}/chapter/${res2.chapter.id}" class="tab-link">
+														<button class="col button button-fill padding-vertical">
+															<i class="f7-icons" style="font-size: 16px">arrowtriangle_left_fill</i>
+														</button>
+													</a>
+												</div>
+											`);
+										}
+									);
 								}
+								// Add next button
 								if (res.chapter.number < res.total_chapter.total) {
-									nav_temp += `
-									<a href="/comic/${res.comic.id}/chapter/${chapter_id * 1 + 1}" class="tab-link">
-                                        <button class="col button button-fill padding-vertical margin-right-half">
-                                            <i class="f7-icons" style="font-size: 16px">arrowtriangle_left_fill</i>
-                                        </button>
-                                    </a>
-								`;
+									app.request.post(
+										root + "nextchapter.php",
+										{
+											comic_id: comic_id,
+											chapter_now: res.chapter.number,
+										},
+										data => {
+											const res2 = JSON.parse(data);
+											$$("#navigation_tools").append(`
+												<div class="col-15 display-flex justify-content-flex-end">
+													<a href="/comic/${res.comic.id}/chapter/${res2.chapter.id}" class="tab-link">
+														<button class="col button button-fill padding-vertical">
+															<i class="f7-icons" style="font-size: 16px">arrowtriangle_right_fill</i>
+														</button>
+													</a>
+												</div>
+											`);
+										}
+									);
 								}
-								nav_temp += `</div>`;
-								$$("#navigation_tools").html(nav_temp);
 
 								// Add Page Image
 								$$("#page_container").html("");
@@ -670,12 +789,6 @@ const addReply = (comment_id, comic_id) => {
 	if (!localStorage.email) {
 		app.dialog.alert("Login to use this feature!");
 	} else {
-		// console.log(replier_email);
-		// console.log(comment_id);
-		// console.log(localStorage.email);
-		// console.log(comic_id);
-		// console.log($$("#replyArea_" + comment_id).text());
-
 		app.request.post(
 			root + "addreply.php",
 			{
@@ -700,3 +813,52 @@ const addReply = (comment_id, comic_id) => {
 const changeReply = comic_id => {
 	$$("#replySection_" + comic_id).toggleClass("display-none");
 };
+
+function get_star(star) {
+	star_temp = star;
+}
+
+function change_fav(comicId) {
+	if (!localStorage.email) {
+		app.dialog.alert("Login to use this feature!");
+	} else {
+		// Add favorite
+		if ($$("#bookmark").prop("checked") == true) {
+			app.request.post(
+				root + "/addfavorite.php",
+				{
+					user_email: localStorage.email,
+					comic_id: comicId,
+				},
+				data => {
+					const res = JSON.parse(data);
+
+					if (res.result == "success") {
+						app.dialog.alert("Comic Added To Favorite!");
+					} else {
+						app.dialog.alert(res.message);
+					}
+				}
+			);
+		}
+		// Remove favorite
+		else {
+			app.request.post(
+				root + "/removefavorite.php",
+				{
+					user_email: localStorage.email,
+					comic_id: comicId,
+				},
+				data => {
+					const res = JSON.parse(data);
+
+					if (res.result == "success") {
+						app.dialog.alert("Comic Removed From Favorite!");
+					} else {
+						app.dialog.alert(res.message);
+					}
+				}
+			);
+		}
+	}
+}

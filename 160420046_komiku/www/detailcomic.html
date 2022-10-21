@@ -46,8 +46,20 @@
 					<!-- Scrollable page content-->
 					<div class="page-content">
 						<div class="block" style="margin-top: 0px">
-							<div class="row margin-vertical" id="comic-title">
-								<!-- Get data from API -->
+							<div class="row no-gap margin-vertical">
+								<div class="col-85 padding-right-half" id="comic-title">
+									<!-- Get data from API -->
+								</div>
+								<div class="col-15 display-flex align-items-flex-start padding-top-half">
+									<div class="icon" id ="favorite_icon">
+										<!-- Get data from API -->
+									</div>
+									<svg class="hide">
+										<symbol fill="var(--color-svg)" viewBox="0 0 24 24" stroke="currentColor" id="icon-bookmark">
+											<path stroke-linecap="round" stroke-linejoin="round" stroke-width=".4" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+										</symbol>
+									</svg>
+								</div>
 							</div>
 
 							<div class="row">
@@ -139,6 +151,31 @@
 											</tbody>
 										</table>
 									</div>
+
+									<!-- Give Rating -->
+									<div class="row margin-vertical">
+										<div class="col-100">
+											<h3 class="montserrat-medium" style="margin-bottom: 0px">Rating</h3>
+										</div>
+										<div class="col-100">
+											<p class="montserrat-regular" style="margin-bottom: 0px">Give your rating here</p>
+										</div>
+										<div class="col-100 margin-vertical">
+											<div id="stars_rating">
+												<div class="stars" id="star_container">
+													<div class="star" id="star_1" onclick="get_star(1)">★</div>
+													<div class="star" id="star_2" onclick="get_star(2)">★</div>
+													<div class="star" id="star_3" onclick="get_star(3)">★</div>
+													<div class="star" id="star_4" onclick="get_star(4)">★</div>
+													<div class="star" id="star_5" onclick="get_star(5)">★</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-100 display-flex justify-content-flex-end" style="margin: 0; padding: 0">
+											<button class="button montserrat-regular" style="margin: 0; padding: 0; color: #7367f0; text-align: right; width: fit-content; text-transform: none" id="reset_rating">Reset Rating</button>
+										</div>
+									</div>
+
 									<!-- Add Comment Section -->
 									<div class="row margin-vertical">
 										<h3 class="montserrat-medium" style="margin-bottom: 0px">Comments</h3>
@@ -180,8 +217,8 @@
 				<div class="list-group" id="panel_menu"></div>
 			</div>
 		</div>
-
 		<!-- CORDOVA_PLACEHOLDER_DONT_REMOVE -->
+
 		<!-- Framework7 library -->
 		<script src="framework7/framework7-bundle.min.js"></script>
 		<!-- Cordova APIs -->

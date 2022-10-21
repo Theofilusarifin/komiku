@@ -30,7 +30,9 @@
 								</a>
 							</div>
 							<div class="title row">
-								<div class="col-100 display-flex justify-content-center"><a href="/"><img src="assets/logo/text_logo.png" style="max-height: 20px; width: auto" alt="" /></a></div>
+								<div class="col-100 display-flex justify-content-center">
+									<a href="/"><img src="assets/logo/text_logo.png" style="max-height: 20px; width: auto" alt="" /></a>
+								</div>
 							</div>
 							<div class="title-large montserrat-bold">
 								<div class="row">
@@ -61,17 +63,30 @@
 					<!-- Scrollable page content-->
 					<div class="page-content">
 						<!-- Search bar -->
-						<form class="searchbar">
-							<div class="searchbar-inner" style="padding: 0px 20px">
-								<div class="searchbar-input-wrap">
-									<input type="search" class="montserrat-regular" placeholder="Search" style="color: #161d31" />
-									<i class="searchbar-icon"></i>
-									<span class="input-clear-button"></span>
-								</div>
-								<span class="searchbar-disable-button if-not-aurora">Cancel</span>
+						<div class="row no-gap display-flex align-items-center">
+							<div class="col-80">
+								<form class="searchbar">
+									<div class="searchbar-inner" style="padding: 0px 20px">
+										<div class="searchbar-input-wrap">
+											<input type="search" class="montserrat-regular" id="comic-title-keyword" placeholder="comic title" style="color: #161d31" />
+											<i class="searchbar-icon"></i>
+											<span class="input-clear-button"></span>
+										</div>
+										<span class="searchbar-disable-button if-not-aurora">Cancel</span>
+									</div>
+								</form>
 							</div>
-						</form>
-						<div class="block" style="margin-top: 0px">
+							<div class="col-20">
+								<form class="searchbar">
+									<div class="searchbar-inner" style="padding: 0px 20px 0px 0px">
+										<div class="searchbar-input-wrap display-flex align-items-center justify-content-center">
+											<div class="button color-gray" id="btn-search-keyword">Search</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+						<div class="block" style="margin-top: 30px">
 							<div class="row" id="comic-container"></div>
 						</div>
 						<!-- End Of Search Bar -->
@@ -89,14 +104,10 @@
 				</div>
 
 				<!-- Add auth here -->
-				<div id="auth-container" style="margin: 0; padding:0;">
-
-				</div>
+				<div id="auth-container" style="margin: 0; padding: 0"></div>
 
 				<!-- List Menu -->
-				<div class="list-group" id="panel_menu">
-					
-				</div>
+				<div class="list-group" id="panel_menu"></div>
 			</div>
 		</div>
 

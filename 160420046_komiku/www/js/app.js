@@ -208,6 +208,30 @@ var app = new Framework7({
 							app.dialog.alert(res.message);
 						}
 					});
+
+					$$("#btn-search-keyword").on("click", () => {
+						const keyword = $$("#comic-title-keyword").val();
+						app.request.post(
+							root + "searchcomic.php",
+							{
+								keyword: keyword,
+							},
+							data => {
+								console.log(data);
+								const res = JSON.parse(data);
+
+								if (res.result == "success") {
+									$$("#comic-container").html('');
+									app.dialog.alert("Found " + res.data + " comic that matched!");
+									res.comics.forEach(comic => {
+										displayComic(comic);
+									});
+								} else {
+									app.dialog.alert(res.message);
+								}
+							}
+						);
+					});
 				}
 				// Favorite Page
 				else if (page.name == "bookmark") {

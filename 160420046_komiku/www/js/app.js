@@ -1,5 +1,5 @@
 var $$ = Dom7;
-var root = "http://localhost/hmp/uts/";
+var root = "https://ubaya.fun/hybrid/160420046/uts_api/";
 var star_temp = 0;
 
 var device = Framework7.getDevice();
@@ -53,10 +53,10 @@ var app = new Framework7({
 							</div>
 							<div class="row no-gap" style="margin: 0px 0px 20px 0px">
 								<div class="col-50" style="padding: 0px 7px 0px 20px">
-									<a href="/settings" class="montserrat-regular button button-outline button-round button-raised panel-close">Settings</a>
+									<a href="/settings" class="montserrat-regular button button-outline button-round button-raised panel-close" style="color:#7367f0; border:solid #7367f0 2px">Settings</a>
 								</div>
 								<div class="col-50" style="padding: 0px 20px 0px 7px">
-									<button onclick="logout()" class="montserrat-regular button button-outline button-round button-raised panel-close">Log Out</button>
+									<button onclick="logout()" class="montserrat-regular button button-outline button-round button-raised panel-close" style="color:#7367f0; border:solid #7367f0 2px">Log Out</button>
 								</div>
 							</div>
 						`);
@@ -64,10 +64,10 @@ var app = new Framework7({
 						$$("#auth-container").html(`
 							<div class="row no-gap" style="margin: 20px 0px 20px 0px">
 								<div class="col-50" style="padding: 0px 7px 0px 20px">
-									<a href="/login" class="montserrat-regular button button-outline button-round button-raised panel-close">Login</a>
+									<a href="/login" class="montserrat-regular button button-outline button-round button-raised panel-close" style="color:#7367f0; border:solid #7367f0 2px">Login</a>
 								</div>
 								<div class="col-50" style="padding: 0px 20px 0px 7px">
-									<a href="/register" class="montserrat-regular button button-outline button-round button-raised panel-close">Register</a>
+									<a href="/register" class="montserrat-regular button button-outline button-round button-raised panel-close" style="color:#7367f0; border:solid #7367f0 2px">Register</a>
 								</div>
 							</div>
 						`);
@@ -221,7 +221,7 @@ var app = new Framework7({
 								const res = JSON.parse(data);
 
 								if (res.result == "success") {
-									$$("#comic-container").html('');
+									$$("#comic-container").html("");
 									app.dialog.alert("Found " + res.data + " comic that matched!");
 									res.comics.forEach(comic => {
 										displayComic(comic);
@@ -272,7 +272,7 @@ var app = new Framework7({
 							res.genres.forEach(genre => {
 								$$("#genre-container").append(`
 									<div class="col-33 margin-vertical">
-										<a href="/genre/${genre.id}" class="col button button-fill button-round">${genre.name}</a>
+										<a href="/genre/${genre.id}" class="col button button-fill button-round" style="background: #7367f0;">${genre.name}</a>
 									</div>`);
 							});
 						} else {
@@ -466,7 +466,7 @@ var app = new Framework7({
 										<tr>
 											<td>
 												<a href="/comic/${res.comic.id}/chapter/${chapter.id}">
-													<h4 style="margin: 0" class="montserrat-regular">Chapter ${chapter.number}</h4>
+													<h4 style="margin: 0; color:#7367f0;" class="montserrat-regular">Chapter ${chapter.number}</h4>
 												</a>
 											</td>
 											<td>
@@ -581,7 +581,7 @@ var app = new Framework7({
 															</p>
 															<div class="row">
 																<div class="col-100 display-flex justify-content-flex-end">
-																	<button class="button montserrat-medium" style="width: max-content" onclick="changeReply(${comment.id})">Reply</button>
+																	<button class="button montserrat-medium" style="width: max-content; color:#7367f0;" onclick="changeReply(${comment.id})">Reply</button>
 																</div>
 															</div>
 															<div class="row display-none" id="replySection_${comment.id}">
@@ -597,7 +597,7 @@ var app = new Framework7({
 																	</div>
 																</div>
 																<div class="col-100 display-flex justify-content-flex-end margin-top-half">
-																	<button class="button button-small button-fill montserrat-regular" style="width: max-content" onclick="addReply(${comment.id}, ${res.comic.id})">Comment</button>
+																	<button class="button button-small button-fill montserrat-regular" style="width: max-content; background:#7367f0; border: solid #7367f0 2px" onclick="addReply(${comment.id}, ${res.comic.id})">Comment</button>
 																</div>
 															</div>
 															<div style="margin-top: 20px">
@@ -673,12 +673,12 @@ var app = new Framework7({
 								nav_temp += `
 								<div class="col-50 display-flex justify-content-flex-start">
                                     <a href="/" class="tab-link">
-                                        <button class="col button button-fill padding margin-right-half">
+                                        <button style="background:#7367f0;" class="col button button-fill padding margin-right-half">
                                             <i class="f7-icons" style="font-size: 16px">house_fill</i>
                                         </button>
                                     </a>
                                     <a href="/comic/${res.comic.id}" class="tab-link">
-                                        <button class="col button button-fill padding">
+                                        <button style="background:#7367f0;" class="col button button-fill padding">
                                             <i class="f7-icons" style="font-size: 16px">info_circle_fill</i>
                                         </button>
                                     </a>
@@ -702,7 +702,7 @@ var app = new Framework7({
 											$$("#navigation_tools").append(`
 												<div class="col-15 display-flex justify-content-flex-end">
 													<a href="/comic/${res.comic.id}/chapter/${res2.chapter.id}" class="tab-link">
-														<button class="col button button-fill padding-vertical">
+														<button style="background:#7367f0;" class="col button button-fill padding-vertical">
 															<i class="f7-icons" style="font-size: 16px">arrowtriangle_left_fill</i>
 														</button>
 													</a>
@@ -724,7 +724,7 @@ var app = new Framework7({
 											$$("#navigation_tools").append(`
 												<div class="col-15 display-flex justify-content-flex-end">
 													<a href="/comic/${res.comic.id}/chapter/${res2.chapter.id}" class="tab-link">
-														<button class="col button button-fill padding-vertical">
+														<button style="background:#7367f0;" class="col button button-fill padding-vertical">
 															<i class="f7-icons" style="font-size: 16px">arrowtriangle_right_fill</i>
 														</button>
 													</a>
@@ -774,7 +774,7 @@ const displayComic = comic => {
 											</div>
 											<div class="row display-flex justify-content-space-between enter">
 												<div class="col-50">
-													<button class="button button-small button-round button-fill montserrat-medium" style="font-size: 9px; width: max-content">Chapter ${comic.comic_chapter}</button>
+													<button class="button button-small button-round button-fill montserrat-medium" style="background:#7367f0; border: 1px solid #7367f0; font-size: 9px; width: max-content">Chapter ${comic.comic_chapter}</button>
 												</div>
 												<div class="col-50">
 													<p class="montserrat-medium" style="font-size: 9px; color: #161d31">${release_date}</p>

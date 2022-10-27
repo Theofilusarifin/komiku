@@ -218,7 +218,6 @@ var app = new Framework7({
 								keyword: keyword,
 							},
 							data => {
-								console.log(data);
 								const res = JSON.parse(data);
 
 								if (res.result == "success") {
@@ -550,7 +549,24 @@ var app = new Framework7({
 
 												if (res.result == "success") {
 													app.dialog.alert("Comment Added Successfuly!");
-												} else {
+
+													app.request.post(
+														root + "detailcomic.php",
+														{
+															comicId: comicId,
+														},
+														data => {
+															const res = JSON.parse(data);
+															if (res.result == "success") {
+																// Show Comment
+																show_comment(res);
+															}
+														}
+													);
+													$$("#comment_area").html('');
+												}
+												// Else
+												else {
 													app.dialog.alert("Comment Failed!");
 												}
 											}
@@ -559,85 +575,7 @@ var app = new Framework7({
 								});
 
 								// Show Comment
-								res.comments.forEach(comment => {
-									comment_date = calculateDate(comment.date);
-									var comment_temp = `
-									<div class="row">
-										<div class="col-100 margin-top">
-											<div class="row no-gap">
-												<div class="col-15 display-flex justify-content-center align-items-flex-start">
-													<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 40px; width: auto" alt="" />
-												</div>
-												<div class="col-85">
-													<div class="card" style="margin-top: 0; background: #efeff4; box-shadow: none">
-														<div class="card-content card-content-padding">
-															<p class="montserrat-bold">
-																${comment.username} &nbsp;
-																<span class="montserrat-regular" style="font-size: 10px; font-weight: 100">${comment_date}</span>
-															</p>
-															<p class="montserrat-regular">
-																${comment.text}
-															</p>
-															<div class="row">
-																<div class="col-100 display-flex justify-content-flex-end">
-																	<button class="button montserrat-medium" style="width: max-content; color:#7367f0;" onclick="changeReply(${comment.id}, ${res.comic.id})">Reply</button>
-																</div>
-															</div>
-															<div class="row display-none" id="replySection_${comment.id}">
-																<div class="col-100 margin-vertical">
-																	<div
-																		class="text-editor text-editor-init text-editor-resizable"
-																		style="margin: 0"
-																		data-placeholder="Leave a Reply here..."
-																		data-mode="keyboard-toolbar"
-																		style="--f7-text-editor-height: 150px"
-																	>
-																		<div class="text-editor-content" id="replyArea_${comment.id}" contenteditable></div>
-																	</div>
-																</div>
-																<div class="col-100 display-flex justify-content-flex-end margin-top-half">
-																	<button class="button button-small button-fill montserrat-regular" style="width: max-content; background:#7367f0; border: solid #7367f0 2px" onclick="addReply(${comment.id}, ${res.comic.id})">Comment</button>
-																</div>
-															</div>
-															<div style="margin-top: 20px">
-																<hr style="height: 1px; background-color: rgba(22, 29, 49, 0.3); border: none" />
-															</div>
-															<!-- Users Reply -->
-															
-															`;
-									// Add Reply
-									res.replies.forEach(reply => {
-										if (reply.comment_id == comment.id) {
-											reply_date = calculateDate(reply.date);
-											comment_temp += `
-											<div class="row no-gap">
-												<div class="col-15 display-flex justify-content-flex-start margin-top">
-													<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
-												</div>
-												<div class="col-85">
-													<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
-														<div class="card-content card-content-padding" style="padding-bottom: 0">
-															<p class="montserrat-bold" style="margin: 0">${reply.username}</p>
-															<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">${reply_date}</p>
-															<p class="montserrat-regular margin-top-half">${reply.text}</p>
-														</div>
-													</div>
-												</div>
-											</div>
-											`;
-										}
-									});
-
-									comment_temp += `<!-- End OF Users Reply -->
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>`;
-
-									$$("#comment_detail").append(comment_temp);
-								});
+								show_comment(res);
 							} else {
 								app.dialog.alert(res.message);
 							}
@@ -831,6 +769,19 @@ const addReply = (comment_id, comic_id) => {
 				if (res.result == "success") {
 					app.dialog.alert("Reply Added Successfuly!");
 					changeReply(comment_id, comic_id);
+					app.request.post(
+						root + "detailcomic.php",
+						{
+							comicId: comic_id,
+						},
+						data => {
+							const res = JSON.parse(data);
+							if (res.result == "success") {
+								// Show Comment
+								show_comment(res);
+							}
+						}
+					);
 				} else {
 					app.dialog.alert(res.message);
 				}
@@ -906,4 +857,87 @@ function change_fav(comicId) {
 			);
 		}
 	}
+}
+
+function show_comment(res) {
+	$$("#comment_detail").html('');
+	res.comments.forEach(comment => {
+		comment_date = calculateDate(comment.date);
+		var comment_temp = `
+		<div class="row">
+			<div class="col-100 margin-top">
+				<div class="row no-gap">
+					<div class="col-15 display-flex justify-content-center align-items-flex-start">
+						<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 40px; width: auto" alt="" />
+					</div>
+					<div class="col-85">
+						<div class="card" style="margin-top: 0; background: #efeff4; box-shadow: none">
+							<div class="card-content card-content-padding">
+								<p class="montserrat-bold">
+									${comment.username} &nbsp;
+									<span class="montserrat-regular" style="font-size: 10px; font-weight: 100">${comment_date}</span>
+								</p>
+								<p class="montserrat-regular">
+									${comment.text}
+								</p>
+								<div class="row">
+									<div class="col-100 display-flex justify-content-flex-end">
+										<button class="button montserrat-medium" style="width: max-content; color:#7367f0;" onclick="changeReply(${comment.id}, ${res.comic.id})">Reply</button>
+									</div>
+								</div>
+								<div class="row display-none" id="replySection_${comment.id}">
+									<div class="col-100 margin-vertical">
+										<div
+											class="text-editor text-editor-init text-editor-resizable"
+											style="margin: 0"
+											data-placeholder="Leave a Reply here..."
+											data-mode="keyboard-toolbar"
+											style="--f7-text-editor-height: 150px"
+										>
+											<div class="text-editor-content" id="replyArea_${comment.id}" contenteditable></div>
+										</div>
+									</div>
+									<div class="col-100 display-flex justify-content-flex-end margin-top-half">
+										<button class="button button-small button-fill montserrat-regular" style="width: max-content; background:#7367f0; border: solid #7367f0 2px" onclick="addReply(${comment.id}, ${res.comic.id})">Comment</button>
+									</div>
+								</div>
+								<div style="margin-top: 20px">
+									<hr style="height: 1px; background-color: rgba(22, 29, 49, 0.3); border: none" />
+								</div>
+								<!-- Users Reply -->
+								
+								`;
+		// Add Reply
+		res.replies.forEach(reply => {
+			if (reply.comment_id == comment.id) {
+				reply_date = calculateDate(reply.date);
+				comment_temp += `
+											<div class="row no-gap">
+												<div class="col-15 display-flex justify-content-flex-start margin-top">
+													<img src="assets/logo/account.png" style="border-radius: 50%; max-height: 35px; width: auto" alt="" />
+												</div>
+												<div class="col-85">
+													<div class="card" style="margin-top: 0; margin-bottom: 0; background: #efeff4; box-shadow: none">
+														<div class="card-content card-content-padding" style="padding-bottom: 0">
+															<p class="montserrat-bold" style="margin: 0">${reply.username}</p>
+															<p class="montserrat-regular" style="font-size: 10px; font-weight: 100; margin: 0">${reply_date}</p>
+															<p class="montserrat-regular margin-top-half">${reply.text}</p>
+														</div>
+													</div>
+												</div>
+											</div>
+											`;
+			}
+		});
+
+		comment_temp += `<!-- End OF Users Reply -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>`;
+
+		$$("#comment_detail").append(comment_temp);
+	});
 }

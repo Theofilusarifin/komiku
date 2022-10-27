@@ -34,13 +34,14 @@ var app = new Framework7({
 
 			$$(document).on("page:afterin", (e, page) => {
 				if (page.name != "register" || page.name != "login") {
+					var random_comic_id = Math.floor(Math.random() * (12 - 1 + 1) + 1);
 					// Appen Panel Menu
 					$$("#panel_menu").html(`
 					<ul style="background-color: #161d31">
 						<li class="montserrat-regular" style="height: 50px"><a href="/" class="link panel-close" style="color: #fff">Home</a></li>
 						<li class="montserrat-regular" style="height: 50px"><a href="/genre" class="link panel-close" style="color: #fff">Genres</a></li>
 						<li class="montserrat-regular" style="height: 50px"><a href="/completed" class="link panel-close" style="color: #fff">Completed</a></li>
-						<li class="montserrat-regular" style="height: 50px"><a href="/random" class="link panel-close" style="color: #fff">Random</a></li>
+						<li class="montserrat-regular" style="height: 50px"><a href="/comic/${random_comic_id}" class="link panel-close" style="color: #fff">Random</a></li>
 						<li class="montserrat-regular" style="height: 50px"><a class="link external" href="https://www.linkedin.com/in/theofilusarifin/" target="_blank" style="color: #fff">Developer</a></li>
 					</ul>`);
 
@@ -521,7 +522,6 @@ var app = new Framework7({
 
 												if (res.result == "success") {
 													app.dialog.alert("Rating Reseted Successfuly!");
-													page.router.navigate(`/comic/${comicId}`);
 												} else {
 													app.dialog.alert(res.message);
 												}
@@ -550,7 +550,6 @@ var app = new Framework7({
 
 												if (res.result == "success") {
 													app.dialog.alert("Comment Added Successfuly!");
-													page.router.navigate(`/comic/${res.comic.id}`);
 												} else {
 													app.dialog.alert("Comment Failed!");
 												}
@@ -581,7 +580,7 @@ var app = new Framework7({
 															</p>
 															<div class="row">
 																<div class="col-100 display-flex justify-content-flex-end">
-																	<button class="button montserrat-medium" style="width: max-content; color:#7367f0;" onclick="changeReply(${comment.id})">Reply</button>
+																	<button class="button montserrat-medium" style="width: max-content; color:#7367f0;" onclick="changeReply(${comment.id}, ${res.comic.id})">Reply</button>
 																</div>
 															</div>
 															<div class="row display-none" id="replySection_${comment.id}">
@@ -784,9 +783,14 @@ const displayComic = comic => {
 									</div>`);
 };
 
+Date.prototype.addHours = function (h) {
+	this.setTime(this.getTime() + h * 60 * 60 * 1000);
+	return this;
+};
+
 const calculateDate = date => {
 	var today = new Date();
-	var comic_date = new Date(date);
+	var comic_date = new Date(date).addHours(7);
 
 	var diffyear = today.getFullYear() - comic_date.getFullYear();
 	if (diffyear > 0) return diffyear + " years ago";
@@ -826,6 +830,7 @@ const addReply = (comment_id, comic_id) => {
 
 				if (res.result == "success") {
 					app.dialog.alert("Reply Added Successfuly!");
+					changeReply(comment_id, comic_id);
 				} else {
 					app.dialog.alert(res.message);
 				}
@@ -834,8 +839,24 @@ const addReply = (comment_id, comic_id) => {
 	}
 };
 
-const changeReply = comic_id => {
-	$$("#replySection_" + comic_id).toggleClass("display-none");
+const changeReply = (comment_id, comic_id) => {
+	$$("#replySection_" + comment_id).toggleClass("display-none");
+	$$("#replySection_" + comment_id).html(`
+		<div class="col-100 margin-vertical">
+			<div
+				class="text-editor text-editor-init text-editor-resizable"
+				style="margin: 0"
+				data-placeholder="Leave a Reply here..."
+				data-mode="keyboard-toolbar"
+				style="--f7-text-editor-height: 150px"
+			>
+				<div class="text-editor-content" id="replyArea_${comment_id}" contenteditable></div>
+			</div>
+		</div>
+		<div class="col-100 display-flex justify-content-flex-end margin-top-half">
+			<button class="button button-small button-fill montserrat-regular" style="width: max-content; background:#7367f0; border: solid #7367f0 2px" onclick="addReply(${comment_id}, ${comic_id})">Comment</button>
+		</div>
+	`);
 };
 
 function get_star(star) {

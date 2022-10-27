@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 } else {
     extract($_POST);
 
-    $sql = "INSERT INTO comment_reply (replier_email, comment_id, comic_id, text, date) VALUES (?,?,?,?)";
+    $sql = "INSERT INTO comment_reply (replier_email, comment_id, comic_id, text) VALUES (?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("siis", $replier_email, $comment_id, $comic_id, $comment);
     $stmt->execute();

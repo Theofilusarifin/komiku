@@ -1,4 +1,5 @@
 var $$ = Dom7;
+// var root = "https://localhost/hmp/uts/";
 var root = "https://ubaya.fun/hybrid/160420046/uts_api/";
 var star_temp = 0;
 

@@ -7,6 +7,11 @@ $username = "hybrid_160420046";
 $password = "ubaya";
 $dbname = "hybrid_160420046";
 
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "komiku";
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 

@@ -2,11 +2,15 @@
 header("Access-Control-Allow-Origin: *");
 
 $data = null;
-$data = null;
 $servername = "localhost";
 $username = "hybrid_160420046";
 $password = "ubaya";
 $dbname = "hybrid_160420046";
+
+// $servername = "localhost";
+// $username = "root";
+// $password = "";
+// $dbname = "komiku";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
